@@ -1,17 +1,8 @@
 import google.generativeai as genai
-import configparser
 import os
+import utils.api_keys as keys
 
-def read_api_key():
-    config = configparser.ConfigParser()
-    try:
-        config.read("keys.txt")
-    except Exception as e:
-        raise FileNotFoundError(f"Config file 'keys.txt. not found. Error: {e}")
-    
-    return config['API_Keys']['GEMINI_API_KEY']
-
-api_key = read_api_key();
+api_key = keys.read_gemini_api_key();
 
 genai.configure(api_key=api_key)
 
